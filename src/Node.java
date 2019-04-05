@@ -1,14 +1,18 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 
 public class Node {
+
     private String name;
     private String description;
     private HashMap<String, Node> neighbors;
     private ArrayList<Item> items;
+    private ArrayList<Creature> creatures;
 
     public Node(String name) {
         this.name = name;
+        creatures = new ArrayList<>();
         neighbors = new HashMap<>();
         items = new ArrayList<>();
     }
@@ -18,6 +22,8 @@ public class Node {
     }
 
     public void addNeighbor(Node neighbor) {
+        System.out.println(neighbor);
+        System.out.println(neighbors);
         neighbors.put(neighbor.getName(), neighbor);
     }
 
@@ -29,7 +35,11 @@ public class Node {
         return out;
     }
 
-    public void addDescription(String description) {
+    public HashMap<String, Node> getNeighbors() {
+        return neighbors;
+    }
+
+    public void setDescription(String description) {
         this.description = description;
     }
 
@@ -72,5 +82,29 @@ public class Node {
     public String removeItem(String item) {
         items.remove(item);
         return item;
+    }
+
+    public void addCreature(Creature creature) {
+        creatures.add(creature);
+    }
+
+    public void removeCreature(Creature creature) {
+        creatures.remove(creature);
+    }
+
+    public ArrayList<Creature> getCreatures() {
+        return creatures;
+    }
+
+    public String getCreatureNames() {
+        StringBuilder out = new StringBuilder();
+        for (Creature creature : creatures) {
+            out.append(creature + " ");
+        }
+        return out.toString();
+    }
+
+    public String toString() {
+        return name;
     }
 }
