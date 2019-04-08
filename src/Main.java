@@ -24,7 +24,7 @@ public class Main {
 
             current = player.getCurrentRoom();
             System.out.println("---------------------------");
-            System.out.println("You are currently in room " + current.getName());
+            System.out.println("You are currently in room: " + current.getName());
             printCreatures(current);
             System.out.print("What do you want to do?: ");
             response = scanner.nextLine();
@@ -32,7 +32,8 @@ public class Main {
             if (response.equals("look")) {
                 System.out.println("All neighbors: " + current.getNeighborNames());
                 System.out.println("Current items: " + player.getItems());
-                System.out.println("description of current room: " + current.getDescription());
+                System.out.println("Items in current room: " + current.getItems());
+                System.out.println("Description of current room: " + current.getDescription());
                 System.out.println("Creatures in map: ");
                 for (Creature creature : g.getCreatures()) {
                     System.out.println(creature.getDescription());
@@ -58,7 +59,7 @@ public class Main {
                     g.addUndirectedEdge(current.getName(), response.substring(10, response.length() - 1));
                 }
 
-                else if (response.substring(0, 11).equals("lift item <")) {
+                else if (response.substring(0, 11).equals("lift item <")) { //currently allows you to create items
                     player.addItem(g.liftItem(current.getName(), response.substring(11, response.length() - 1)));
                 }
 
@@ -72,7 +73,9 @@ public class Main {
 
                 else if (response.substring(0, 17).equals("create creature <") && response.substring(response.length() - 1).equals(">")) {
                     if (response.substring(17, response.length() - 1).split(", ")[0].equals("chicken")) {
-
+                        Chicken chicken = new Chicken(current, "chicken");
+                        current.addCreature(chicken);
+                        g.getCreatures().add(chicken);
                     }
                 }
 

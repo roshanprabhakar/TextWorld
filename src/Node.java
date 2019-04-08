@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 
 public class Node {
@@ -22,15 +21,13 @@ public class Node {
     }
 
     public void addNeighbor(Node neighbor) {
-        System.out.println(neighbor);
-        System.out.println(neighbors);
         neighbors.put(neighbor.getName(), neighbor);
     }
 
     public String getNeighborNames() {
         String out = "";
         for (String name : neighbors.keySet()) {
-            out += name + " ";
+            out += name + ", ";
         }
         return out;
     }

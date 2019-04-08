@@ -14,7 +14,6 @@ public class Graph {
         creatures = new ArrayList<>();
         nodes = new HashMap<>();
         addNode(startRoom);
-        System.out.println(nodes);
         startNode = getNode(startRoom);
         this.player = new Player(player, getNode(startRoom));
     }
@@ -24,11 +23,6 @@ public class Graph {
     }
 
     public void addDirectedEdge(String name1, String name2) {
-        System.out.println("############" + name1);
-        System.out.println("######" + name2);
-        getNode(name1);
-        getNode(name2);
-        System.out.println(getNode(name2));
         getNode(name1).addNeighbor(getNode(name2));
     }
 
@@ -38,7 +32,6 @@ public class Graph {
     }
 
     public Node getNode(String name) {
-        System.out.println(name);
         return nodes.get(name);
     }
 
@@ -82,34 +75,26 @@ public class Graph {
     public void setup() {
 
         g.addNode("twin bedroom");
-        g.addNode("bedroom closet");
+        g.addNode("closet");
         g.addNode("master bedroom");
         g.addNode("living room");
-        g.addNode("Family room");
+        g.addNode("family room");
         g.addNode("tv room");
         g.addNode("master bathroom");
         g.addNode("guest bathroom");
         g.addNode("bathroom");
 
         g.addUndirectedEdge("hall", "twin bedroom");
-
-        g.getNode("twin bedroom");
-        g.getNode("closet");
-        g.addDirectedEdge("twin bedroom", "closet");
-        g.addDirectedEdge("closet", "twin bedroom");
-
-//        g.addUndirectedEdge("twin bedroom", "closet");
-//
-//
-//        g.addUndirectedEdge("closet", "master bedroom");
-//        g.addUndirectedEdge("master bedroom", "hall");
-//        g.addUndirectedEdge("hall", "guest bathroom");
-//        g.addUndirectedEdge("master bedroom", "master bathroom");
-//        g.addUndirectedEdge("hall", "living room");
-//        g.addUndirectedEdge("living room", "family room");
-//        g.addUndirectedEdge("family room", "hall");
-//        g.addUndirectedEdge("tv room", "family room");
-//        g.addDirectedEdge("tv room", "bathroom");
+        g.addUndirectedEdge("twin bedroom", "closet");
+        g.addUndirectedEdge("closet", "master bedroom");
+        g.addUndirectedEdge("master bedroom", "hall");
+        g.addUndirectedEdge("hall", "guest bathroom");
+        g.addUndirectedEdge("master bedroom", "master bathroom");
+        g.addUndirectedEdge("hall", "living room");
+        g.addUndirectedEdge("living room", "family room");
+        g.addUndirectedEdge("family room", "hall");
+        g.addUndirectedEdge("tv room", "family room");
+        g.addDirectedEdge("tv room", "bathroom");
 
         for (int i = 0; i < 3; i++) {
             Chicken chicken = new Chicken(g.getStartRoom(), "Chicken");
