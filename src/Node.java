@@ -5,35 +5,40 @@ public class Node {
 
     private String name;
     private String description;
+
+    private HashMap<String, Player> players;
+    private HashMap<String, Creature> creatures;
+    private HashMap<String, Item> items;
     private HashMap<String, Node> neighbors;
-    private ArrayList<Item> items;
-    private ArrayList<Creature> creatures;
 
     public Node(String name) {
+
         this.name = name;
-        creatures = new ArrayList<>();
+
+        players = new HashMap<>();
+        creatures = new HashMap<>();
+        items = new HashMap<>();
         neighbors = new HashMap<>();
-        items = new ArrayList<>();
     }
 
     public String getName() {
         return this.name;
     }
 
-    public void addNeighbor(Node neighbor) {
-        neighbors.put(neighbor.getName(), neighbor);
-    }
-
-    public String getNeighborNames() {
-        String out = "";
-        for (String name : neighbors.keySet()) {
-            out += name + ", ";
-        }
-        return out;
+    public void addNeighbor(Node node) {
+        neighbors.put(node.getName(), node);
     }
 
     public HashMap<String, Node> getNeighbors() {
         return neighbors;
+    }
+
+    public String getNeighbors(boolean bool) {
+        StringBuilder out = new StringBuilder();
+        for (String neighbor : neighbors.keySet()) {
+            out.append(neighbor + ", ");
+        }
+        return out.toString();
     }
 
     public void setDescription(String description) {
@@ -41,67 +46,80 @@ public class Node {
     }
 
     public String getDescription() {
-        if (description == null) return "no description";
         return description;
     }
 
-    public Node getNeighbor(String name) {
-        try {
-            return neighbors.get(name);
-        } catch (NullPointerException e) {
-            return null;
-        }
-    }
-
-    public String getItems() {
-        String out = "";
-        for (Item item : items) {
-            out += item.getName();
-        }
-        return out;
-    }
-
-    public void addItem(String item) {
-        items.add(new Item(item));
-    }
-
-    public void addItem(Item item) {
-        items.add(item);
-    }
-
-    public Item getItem(String name) {
-        for (Item item : items) {
-            if (item.getName().equals(name)) return item;
-        }
-        return null;
-    }
-
-    public String removeItem(String item) {
-        items.remove(item);
-        return item;
-    }
-
     public void addCreature(Creature creature) {
-        creatures.add(creature);
+        creatures.put(creature.getName(), creature);
     }
 
     public void removeCreature(Creature creature) {
-        creatures.remove(creature);
+        creatures.remove(creature.getName());
     }
 
-    public ArrayList<Creature> getCreatures() {
-        return creatures;
+    public void addPlayer(Player player) {
+        players.put(player.getName(), player);
     }
 
-    public String getCreatureNames() {
+    public void removePlayer(Player player) {
+        players.remove(player.getName());
+    }
+
+    public Item getItem(String item) {return items.get(item);}
+
+    public boolean containsAPlayer() {
+        if (players.size() != 0) return true;
+        return false;
+    }
+
+    public boolean containsItem(String item) {
+        if (items.containsKey(item)) return true;
+        return false;
+    }
+
+    public String getCreatures() {
         StringBuilder out = new StringBuilder();
-        for (Creature creature : creatures) {
-            out.append(creature + " ");
+        for (String creature : creatures.keySet()) {
+            out.append(creature + ", ");
         }
         return out.toString();
     }
 
-    public String toString() {
-        return name;
+    public String getItems() {
+        StringBuilder out = new StringBuilder();
+        for (String item : items.keySet()) {
+            out.append(item + ", ");
+        }
+        return out.toString();
     }
+
+    public void removeItem(String item) {
+        items.remove(item);
+    }
+
+    public void addItem(Item item) {
+        items.put(item.getName(), item);
+    }
+
+    public boolean containsNeighbor(Node neighbor) {
+        if (neighbors.get(neighbor.getName()) == null) {
+            return false;
+        }
+        return true;
+    }
+
+    public Node getRandomNeighbor() {
+        ArrayList<Node> list = mapToArray(neighbors);
+        return list.get((int)(Math.random() * list.size()));
+    }
+
+    private ArrayList<Node> mapToArray(HashMap<String, Node> map) {
+        ArrayList<Node> nodes = new ArrayList<>();
+        for (String key : map.keySet()) {
+            nodes.add(neighbors.get(key));
+        }
+        return nodes;
+
+    }
+
 }

@@ -1,29 +1,30 @@
-import java.util.ArrayList;
-
 public abstract class Creature {
 
-    String name;
+    protected String name;
     protected Node room;
-    protected ArrayList<Node> options;
 
-    public Creature(Node room, String name) {
+    public Creature(String name, Node room) {
         this.room = room;
         this.name = name;
+        room.addCreature(this);
     }
 
-    abstract void act();
-    abstract void move();
-    public abstract String toString();
-
-    public Node getRoom() {
-        return room;
-    }
-
-    public void setRoom(Node room) {
-        this.room = room;
+    public String getName() {
+        return this.name;
     }
 
     public String getDescription() {
-        return "<" + name + "> in room: " + room;
+        return "Creature <" + name + "> is in room: " + room.getName();
     }
+
+    public abstract void act();
+    public abstract void move();
+
+    public void moveToRoom(Node room) {
+        this.room.removeCreature(this);
+        this.room = room;
+        room.addCreature(this);
+    }
+
+    public Node getRoom() {return room;}
 }

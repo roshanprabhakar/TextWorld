@@ -3,86 +3,64 @@ import java.util.HashMap;
 
 public class Graph {
 
-    private Graph g = this;
-    private Node startNode;
-    private HashMap<String, Node> nodes;
-    private Player player;
-
+    private HashMap<String, Node> rooms;
     private ArrayList<Creature> creatures;
 
-    public Graph(String player, String startRoom) {
+    //for setup reference
+    private Graph g = this;
+
+    public Graph() {
+        rooms = new HashMap<>();
         creatures = new ArrayList<>();
-        nodes = new HashMap<>();
-        addNode(startRoom);
-        startNode = getNode(startRoom);
-        this.player = new Player(player, getNode(startRoom));
     }
 
-    public void addNode(String name) {
-        nodes.put(name, new Node(name));
+    public Node getRoom(String room) {
+        return rooms.get(room);
     }
 
-    public void addDirectedEdge(String name1, String name2) {
-        getNode(name1).addNeighbor(getNode(name2));
+    //Both addRooms used to add rooms not connected to anything
+    public void addRoom(String name) {
+        addRoom(new Node(name));
     }
 
-    public void addUndirectedEdge(String name1, String name2) {
-        addDirectedEdge(name1, name2);
-        addDirectedEdge(name2, name1);
+    public void addRoom(Node room) {
+        rooms.put(room.getName(), room);
     }
 
-    public Node getNode(String name) {
-        return nodes.get(name);
+    //Connect rooms together
+    public void addDirectedEdge(Node room1, Node room2) {
+        room1.addNeighbor(room2);
     }
 
-    public void addDescription(String name, String description) {
-        nodes.get(name).setDescription(description);
+    public void addDirectedEdge(String room1, String room2) {
+        addDirectedEdge(rooms.get(room1), rooms.get(room2));
     }
 
-    public String getDescription(String name) {
-        return nodes.get(name).getDescription();
+    public void addUndirectedEdge(Node room1, Node room2) {
+        addDirectedEdge(room1, room2);
+        addDirectedEdge(room2, room1);
     }
 
-    public void placeItem(String node, String item) {
-        try {
-            getNode(node).addItem(item);
-        } catch (NullPointerException e) {
-            System.out.println("item: " + item + " non existent");
-        }
+    public void addUndirectedEdge(String room1, String room2) {
+        addUndirectedEdge(rooms.get(room1), rooms.get(room2));
     }
 
-    public void placeItem(String node, Item item) {
-        try {
-            getNode(node).addItem(item);
-        } catch (NullPointerException e) {
-            System.out.println("item: " + item + " non existent");
-        }
-    }
-
-    public String liftItem(String node, String item) {
-        return nodes.get(node).removeItem(item);
-    }
-
-    public Player getPlayer() {
-        return player;
-    }
-
-
-    public Node getStartRoom() {
-        return startNode;
+    public void addCreature(Creature creature) {
+        creatures.add(creature);
     }
 
     public void setup() {
 
-        g.addNode("twin bedroom");
-        g.addNode("closet");
-        g.addNode("master bedroom");
-        g.addNode("living room");
-        g.addNode("family room");
-        g.addNode("tv room");
-        g.addNode("master bathroom");
-        g.addNode("guest bathroom");
-        g.addNode("bathroom");
+        g.addRoom("hall");
+        g.addRoom("twin bedroom");
+        g.addRoom("closet");
+        g.addRoom("master bedroom");
+        g.addRoom("living room");
+        g.addRoom("family room");
+        g.addRoom("tv room");
+        g.addRoom("master bathroom");
+        g.addRoom("guest bathroom");
+        g.addRoom("bathroom");
 
         g.addUndirectedEdge("hall", "twin bedroom");
         g.addUndirectedEdge("twin bedroom", "closet");
@@ -94,17 +72,19 @@ public class Graph {
         g.addUndirectedEdge("living room", "family room");
         g.addUndirectedEdge("family room", "hall");
         g.addUndirectedEdge("tv room", "family room");
-        g.addDirectedEdge("tv room", "bathroom");
+        g.addUndirectedEdge("tv room", "bathroom");
 
-        for (int i = 0; i < 3; i++) {
-            Chicken chicken = new Chicken(g.getStartRoom(), "Chicken");
-            creatures.add(chicken);
-            getStartRoom().addCreature(chicken);
+        for (int i = 0; i < 4; i++) {
+            g.addCreature(new Chicken(getRoom("hall")));
+        }
+
+        //g.addCreature(new Wumpus(getRoom("bathroom"))); //in this small a map, the wumpus kills very quickly
+    }
+
+    public void moveCreatures() {
+        for (Creature creature : creatures) {
+            creature.act();
+            creature.move();
         }
     }
-
-    public ArrayList<Creature> getCreatures() {
-        return creatures;
-    }
-
 }

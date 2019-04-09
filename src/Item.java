@@ -1,6 +1,6 @@
 public class Item {
 
-    String name;
+    private String name;
 
     public Item(String name) {
         this.name = name;
@@ -8,5 +8,9 @@ public class Item {
 
     public String getName() {
         return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

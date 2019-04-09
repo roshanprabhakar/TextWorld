@@ -2,54 +2,59 @@ import java.util.HashMap;
 
 public class Player {
 
-    HashMap<String, Item> items;
-    String name;
-    String description;
-    Node currentRoom;
-
+    private HashMap<String, Item> items;
+    private Node currentRoom;
+    private String name;
 
     public Player(String name, Node currentRoom) {
-        this.name = name;
         this.currentRoom = currentRoom;
+        this.name = name;
         items = new HashMap<>();
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Item getItem(String item) {
-        try {
-            Item out = items.get(item);
-            items.remove(item);
-            return out;
-        } catch (NullPointerException e) {
-            System.out.println("no existing item");
+    public void moveToRoom(Node room) {
+        if (currentRoom.containsNeighbor(room)) {
+            currentRoom.removePlayer(this);
+            currentRoom = room;
+            currentRoom.addPlayer(this);
+        } else {
+            System.out.println("WARNING! cannot move to this room, it is not a neighbor");
         }
-        return null;
     }
 
-    public void addItem(String name) {
-        items.put(name, new Item(name));
+    public void moveToRoom(String node) {
+        if (currentRoom.getNeighbors().get(node) != null) {
+            moveToRoom(currentRoom.getNeighbors().get(node));
+        } else {
+            System.out.println("WARNING! cannot move to this room, it is not a neighbor");
+        }
     }
 
-    public Node getCurrentRoom() {
-        return currentRoom;
+    public void liftItem(String item) {
+        if (currentRoom.containsItem(item)) {
+            items.put(item, currentRoom.getItem(item));
+            currentRoom.removeItem(item);
+        } else {
+            System.out.println("Cannot lift this item! it doesn't exist in this room");
+        }
     }
 
-    public void setCurrentRoom(Node newRoom) {
-        currentRoom = newRoom;
+    public void placeItem(String item) {
+        currentRoom.addItem(items.get(item));
+        items.remove(item);
+    }
+
+    public String getName() {
+        return name;
     }
 
     public String getItems() {
-        String out = "";
+        StringBuilder out = new StringBuilder();
         for (String item : items.keySet()) {
-            out += item + " ";
+            out.append(item + ", ");
         }
-        return out;
+        return out.toString();
     }
+
+    public Node getCurrentRoom() {return currentRoom;}
 }
