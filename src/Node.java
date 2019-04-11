@@ -33,6 +33,10 @@ public class Node {
         return neighbors;
     }
 
+    public Node getNeighbor(String name) {
+        return neighbors.get(name);
+    }
+
     public String getNeighbors(boolean bool) {
         StringBuilder out = new StringBuilder();
         for (String neighbor : neighbors.keySet()) {
@@ -106,6 +110,13 @@ public class Node {
             return false;
         }
         return true;
+    }
+
+    public boolean containsNeighbor(String name) {
+        for (String neighbor : neighbors.keySet()) {
+            if (name.equals(neighbor)) return true;
+        }
+        return false;
     }
 
     public Node getRandomNeighbor() {

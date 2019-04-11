@@ -1,7 +1,7 @@
 public class Chicken extends Creature {
 
-    public Chicken(Node room) {
-        super("chicken", room);
+    public Chicken(String name, Node room) {
+        super(name, room);
     }
 
     @Override

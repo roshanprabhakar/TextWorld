@@ -12,6 +12,7 @@ public class Graph {
     public Graph() {
         rooms = new HashMap<>();
         creatures = new ArrayList<>();
+        setup();
     }
 
     public Node getRoom(String room) {
@@ -75,10 +76,15 @@ public class Graph {
         g.addUndirectedEdge("tv room", "bathroom");
 
         for (int i = 0; i < 4; i++) {
-            g.addCreature(new Chicken(getRoom("hall")));
+            g.addCreature(new Chicken("chicken" + i, getRoom("hall")));
         }
 
-        //g.addCreature(new Wumpus(getRoom("bathroom"))); //in this small a map, the wumpus kills very quickly
+        for (int i = 0; i < 3; i++) {
+            g.getRoom("hall").addItem(new Item("sword" + i));
+        }
+
+        g.addCreature(new Popstar("popstar", getRoom("twin bedroom")));
+        g.addCreature(new Wumpus("wumpus", getRoom("twin bedroom")));
     }
 
     public void moveCreatures() {

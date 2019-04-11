@@ -24,6 +24,7 @@ public abstract class Creature {
         this.room.removeCreature(this);
         this.room = room;
         room.addCreature(this);
+
     }
 
     public Node getRoom() {return room;}
