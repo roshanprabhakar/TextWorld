@@ -12,24 +12,24 @@ public class Wumpus extends Creature {
     @Override
     public void move() {
         for (String neighbor : room.getNeighbors().keySet()) {
-            Node first = room.getNeighbor(neighbor);
+            System.out.println("################################");
+            System.out.println(neighbor + ": " + room.getNeighbor(neighbor).containsAPlayer());
+
+            if (room.getNeighbor(neighbor).containsAPlayer()) {
+                continue;
+            }
+
+            boolean canMoveToNeighbor = true;
             for (String neighbor2 : room.getNeighbor(neighbor).getNeighbors().keySet()) {
-                Node second = first.getNeighbor(neighbor2);
-
-                if (!first.containsAPlayer()) {
-                    if (!second.containsAPlayer()) {
-                        moveToRoom(first);
-                    } else {
-                        moveToRoom(room);
-                    }
-
-                } else {
-                    Node random = room.getRandomNeighbor();
-                    while (random == first) {
-                        random = room.getRandomNeighbor();
-                    }
-                    moveToRoom(random);
+                System.out.println("      " + neighbor2 + ": " + room.getNeighbor(neighbor).getNeighbor(neighbor2).containsAPlayer());
+                if (room.getNeighbor(neighbor).getNeighbor(neighbor2).containsAPlayer()) {
+                    canMoveToNeighbor = false;
                 }
+            }
+
+            if (canMoveToNeighbor) {
+                System.out.println("wumpus moving to " + neighbor);
+                moveToRoom(room.getNeighbor(neighbor));
             }
         }
     }

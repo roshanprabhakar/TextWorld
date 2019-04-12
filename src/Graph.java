@@ -83,7 +83,7 @@ public class Graph {
             g.getRoom("hall").addItem(new Item("sword" + i));
         }
 
-        g.addCreature(new Popstar("popstar", getRoom("twin bedroom")));
+//        g.addCreature(new Popstar("popstar", getRoom("twin bedroom")));
         g.addCreature(new Wumpus("wumpus", getRoom("twin bedroom")));
     }
 

@@ -9,6 +9,7 @@ public class Player {
     public Player(String name, Node currentRoom) {
         this.currentRoom = currentRoom;
         this.name = name;
+        currentRoom.addPlayer(this);
         items = new HashMap<>();
     }
 
