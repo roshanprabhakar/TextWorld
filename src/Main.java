@@ -56,7 +56,9 @@ public class Main {
 
         //no input required
         commands.put("look", new LookCommand());
+        commands.put("quit", new QuitCommand());
         commands.put("get description", new GetDescriptionCommand());
+
     }
 
     private static Command getCommandFromInput(String input) {

@@ -11,8 +11,11 @@ public class Popstar extends Creature {
     @Override
     @SuppressWarnings("Duplicates")
     public void move() {
+        boolean canMoveToNeighbor = false;
+
+        System.out.println("<What the popstar sees>");
         for (String neighbor : room.getNeighbors().keySet()) {
-            System.out.println("PPPPPPPPPPPPPPPPPPPPPPPPPPPPP");
+
             System.out.println(neighbor + ": " + room.getNeighbor(neighbor).containsAPlayer());
 
             if (room.getNeighbor(neighbor).containsAPlayer()) {
@@ -21,7 +24,6 @@ public class Popstar extends Creature {
                 return;
             }
 
-            boolean canMoveToNeighbor = false;
             for (String neighbor2 : room.getNeighbor(neighbor).getNeighbors().keySet()) {
                 System.out.println("      " + neighbor2 + ": " + room.getNeighbor(neighbor).getNeighbor(neighbor2).containsAPlayer());
                 if (room.getNeighbor(neighbor).getNeighbor(neighbor2).containsAPlayer()) {
@@ -32,9 +34,10 @@ public class Popstar extends Creature {
             if (canMoveToNeighbor) {
                 System.out.println("popstar moving to " + neighbor);
                 moveToRoom(room.getNeighbor(neighbor));
-            } else {
-                moveToRoom(room.getRandomNeighbor());
+                return;
             }
         }
+
+        if (!canMoveToNeighbor) moveToRoom(room.getRandomNeighbor());
     }
 }

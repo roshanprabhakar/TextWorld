@@ -1,6 +1,6 @@
 public abstract class Creature {
 
-    protected String name;
+    private String name;
     protected Node room;
 
     public Creature(String name, Node room) {

@@ -11,8 +11,8 @@ public class Wumpus extends Creature {
 
     @Override
     public void move() {
+        System.out.println("<What the wumpus sees>");
         for (String neighbor : room.getNeighbors().keySet()) {
-            System.out.println("################################");
             System.out.println(neighbor + ": " + room.getNeighbor(neighbor).containsAPlayer());
 
             if (room.getNeighbor(neighbor).containsAPlayer()) {
