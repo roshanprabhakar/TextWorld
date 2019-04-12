@@ -2,14 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0ed3f608-2d07-4a6d-bebe-ab3164b3e5c9" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/QuitCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/TextWorld/Graph.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TextWorld/Graph.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/TextWorld/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TextWorld/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Creature.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Creature.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Popstar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Popstar.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Wumpus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Wumpus.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -22,7 +17,7 @@
     <session id="-273259050">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="18" />
+          <entry key="project.closed" value="19" />
           <entry key="project.open.time.0" value="3" />
           <entry key="project.open.time.1" value="8" />
           <entry key="project.open.time.10" value="1" />
@@ -47,14 +42,14 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="15" />
-          <entry key="java" value="21104" />
-          <entry key="txt" value="268" />
+          <entry key="java" value="21167" />
+          <entry key="txt" value="401" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="21104" />
-          <entry key="PLAIN_TEXT" value="283" />
+          <entry key="JAVA" value="21167" />
+          <entry key="PLAIN_TEXT" value="416" />
         </counts>
       </usages-collector>
     </session>
@@ -107,8 +102,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Popstar.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="167">
-              <caret line="16" column="64" selection-start-line="16" selection-start-column="64" selection-end-line="16" selection-end-column="64" />
+            <state relative-caret-position="225">
+              <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
               <folding>
                 <element signature="e#180#211#0" expanded="true" />
               </folding>
@@ -128,8 +123,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Wumpus.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="16" column="25" lean-forward="true" selection-start-line="16" selection-start-column="25" selection-end-line="16" selection-end-column="25" />
+            <state relative-caret-position="180">
+              <caret line="14" column="62" selection-start-line="14" selection-start-column="62" selection-end-line="14" selection-end-column="62" />
             </state>
           </provider>
         </entry>
@@ -201,8 +196,8 @@
         <option value="$PROJECT_DIR$/src/GoCommand.java" />
         <option value="$PROJECT_DIR$/src/Creature.java" />
         <option value="$PROJECT_DIR$/src/QuitCommand.java" />
-        <option value="$PROJECT_DIR$/src/Wumpus.java" />
         <option value="$PROJECT_DIR$/src/Main.java" />
+        <option value="$PROJECT_DIR$/src/Wumpus.java" />
         <option value="$PROJECT_DIR$/src/Popstar.java" />
       </list>
     </option>
@@ -213,9 +208,9 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="width" value="1920" />
-    <option name="height" value="1080" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="width" value="1440" />
+    <option name="height" value="900" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -246,7 +241,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1555037111504" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1555037157557" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RecentsManager">
@@ -311,7 +306,7 @@
       <workItem from="1554875270677" duration="1060000" />
       <workItem from="1554926425069" duration="7011000" />
       <workItem from="1555022897081" duration="234000" />
-      <workItem from="1555028734275" duration="5190000" />
+      <workItem from="1555028734275" duration="5442000" />
     </task>
     <task id="LOCAL-00001" summary="current bug: null when getting some room">
       <created>1554485423562</created>
@@ -355,15 +350,21 @@
       <option name="project" value="LOCAL" />
       <updated>1555035298588</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="fixed issues with moving the popstar (nullpointer when not exiting after finding a player). Also UI">
+      <created>1555037197733</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1555037197733</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="43754000" />
+    <option name="totallyTimeSpent" value="44006000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1920" height="1080" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1485623" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -374,7 +375,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3299595" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.29757085" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.29757085" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3987854" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -444,7 +445,8 @@
     <MESSAGE value="created polymorphism based input system" />
     <MESSAGE value="programmed working wumpus" />
     <MESSAGE value="created working popstar as well as a system for catching null commands" />
-    <option name="LAST_COMMIT_MESSAGE" value="created working popstar as well as a system for catching null commands" />
+    <MESSAGE value="fixed issues with moving the popstar (nullpointer when not exiting after finding a player). Also UI" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed issues with moving the popstar (nullpointer when not exiting after finding a player). Also UI" />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
@@ -570,13 +572,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Wumpus.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="16" column="25" lean-forward="true" selection-start-line="16" selection-start-column="25" selection-end-line="16" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/QuitCommand.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
@@ -612,10 +607,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Wumpus.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="14" column="62" selection-start-line="14" selection-start-column="62" selection-end-line="14" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Popstar.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="167">
-          <caret line="16" column="64" selection-start-line="16" selection-start-column="64" selection-end-line="16" selection-end-column="64" />
+        <state relative-caret-position="225">
+          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
           <folding>
             <element signature="e#180#211#0" expanded="true" />
           </folding>
