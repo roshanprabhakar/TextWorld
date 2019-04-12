@@ -1,11 +1,15 @@
 public abstract class Command {
 
     protected String placeHolder;
+    public boolean isSafeToMoveCreatures = true;
 
     abstract void execute();
-
     protected void init(String in) {
         placeHolder = getObjectName(in);
+    }
+
+    protected boolean isSafeToMoveCreatures() {
+        return isSafeToMoveCreatures;
     }
 
     private String getObjectName(String in) {
@@ -21,4 +25,5 @@ public abstract class Command {
         }
         return body.toString();
     }
+
 }

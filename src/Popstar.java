@@ -9,26 +9,31 @@ public class Popstar extends Creature {
     }
 
     @Override
+    @SuppressWarnings("Duplicates")
     public void move() {
         for (String neighbor : room.getNeighbors().keySet()) {
-            Node first = room.getNeighbor(neighbor);
+            System.out.println("PPPPPPPPPPPPPPPPPPPPPPPPPPPPP");
+            System.out.println(neighbor + ": " + room.getNeighbor(neighbor).containsAPlayer());
 
-            System.out.println(room.getNeighbor(neighbor));
-            System.out.println(room.getNeighbor(neighbor).getNeighbors().keySet());
+            if (room.getNeighbor(neighbor).containsAPlayer()) {
+                System.out.println("popstar moving to room: " + neighbor);
+                moveToRoom(room.getNeighbor(neighbor));
+                return;
+            }
 
+            boolean canMoveToNeighbor = false;
             for (String neighbor2 : room.getNeighbor(neighbor).getNeighbors().keySet()) {
-                Node second = first.getNeighbor(neighbor2);
-
-                if (first.containsAPlayer()) {
-                    moveToRoom(first);
-                    return;
-                } else {
-                    if (second.containsAPlayer()) {
-                        moveToRoom(first);
-                    } else {
-                        moveToRoom(room.getRandomNeighbor());
-                    }
+                System.out.println("      " + neighbor2 + ": " + room.getNeighbor(neighbor).getNeighbor(neighbor2).containsAPlayer());
+                if (room.getNeighbor(neighbor).getNeighbor(neighbor2).containsAPlayer()) {
+                    canMoveToNeighbor = true;
                 }
+            }
+
+            if (canMoveToNeighbor) {
+                System.out.println("popstar moving to " + neighbor);
+                moveToRoom(room.getNeighbor(neighbor));
+            } else {
+                moveToRoom(room.getRandomNeighbor());
             }
         }
     }

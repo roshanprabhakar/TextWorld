@@ -7,6 +7,7 @@ public class GoCommand extends Command {
                 Main.p.moveToRoom(placeHolder);
             } else {
                 System.out.println("Cannot move here: either non-existent or not a neighbor");
+                isSafeToMoveCreatures = false;
             }
         } catch (NullPointerException e) {
         }

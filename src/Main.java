@@ -29,13 +29,19 @@ public class Main {
             System.out.print("Your move: ");
             response = scanner.nextLine();
 
-            Command command = getCommandFromInput(response);
-            command.init(response);
-            command.execute();
+            try {
+
+                Command command = getCommandFromInput(response);
+                command.init(response);
+                command.execute();
+
+                if (command.isSafeToMoveCreatures()) g.moveCreatures();
+
+            } catch (NullPointerException e) {
+                System.out.println("Unknown command: " + response);
+            }
 
             System.out.println("=======================");
-
-            g.moveCreatures();
         }
     }
 
